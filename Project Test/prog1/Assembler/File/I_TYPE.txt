@@ -1,0 +1,8 @@
+addi 1000
+lw   1001
+sw   1010
+ori  1011
+andi 1100
+xori 1101
+beq  1110
+bne  1111

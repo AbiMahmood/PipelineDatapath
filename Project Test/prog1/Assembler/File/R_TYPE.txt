@@ -1,0 +1,7 @@
+add 0000
+sub 0001
+nor 0010
+or  0011
+and 0100
+xor 0101
+nand 0110

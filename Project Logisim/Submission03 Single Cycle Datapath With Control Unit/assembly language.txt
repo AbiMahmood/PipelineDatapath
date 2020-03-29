@@ -1,0 +1,27 @@
+if( A[1] == A[2] )
+A[1] = A[2]
+else A[1] + A[2]
+
+A is $t1
+
+
+addi t2 t2 2 \\t2
+8222
+
+lw t2 4(t2)
+9224
+
+addi t3 t3 1
+8331
+
+lw t3, 2(t3)
+9332
+
+beq t2 t3 1
+e231
+
+add t4 t3 t2
+0432
+
+sw t2 2(t2)
+a222

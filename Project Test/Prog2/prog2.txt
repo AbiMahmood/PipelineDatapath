@@ -1,0 +1,43 @@
+v2.0 raw
+The program starts with two variables, A and B, and does the following: 
+• computes A AND B and places the result in memory location 4 
+• computes A OR  B and places the result in memory location 7 
+ 
+Initially, data memory is configured as follows: 
+ 
+ location 0:     14 hex   (= 20 decimal) 
+ location 20:   the variable A 
+ location 24:   the variable B 
+
+Assembly Code 
+ 
+//
+sub $t0,$zero,$zero   ; set reg[0] to 0                  \\t0 = 0
+1000
+
+lw  $t1,0($zero)      ; reg[1] <- mem[0] (= 20)          \\t1 = 10100 \\mem[0] was 20deciaml
+9100
+
+lw  $t2,0($t1)        ; reg[2] <- mem[20]                \\t2 = 1010 (A) \\mem[20] was A
+9210
+
+lw  $t3,4($t1)        ; reg[3] <- mem[24]                \\t3 = 1011 (B) \\mem[24] was B
+9314
+
+and $t4,$t2,$t3       ; reg[4] <- reg[2] AND reg[3]      \\t4 = 1010 and 1011 = 1010 = a
+4423
+
+or  $t5,$t2,$t3       ; reg[5] <- reg[2] OR reg[3]       \\t5 = 1010 or 1011 = 1011 = b
+3523
+
+sw  $t4,4($zero)      ; mem[4] <- reg[4]                 \\store "a" into adress 4
+a404
+
+sw  $t5,7($zero)      ; mem[8] <- reg[5]                 \\store "b" into adress 7
+a507
+
+beq $t0,$t0,-1          ; program is over, loop back here  
+e00f
+
+
+

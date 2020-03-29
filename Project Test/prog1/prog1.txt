@@ -1,0 +1,52 @@
+Program 1: The Sum Program
+
+Initially, data memory is configured as follows: 
+ 
+ location 0:   0001 
+ location 4:   000a 
+ location 7:   000b
+ 
+Assembly Code 
+
+sub $t0,$zero,$zero  ; set reg[0] to 0              \\t0=0
+1000
+
+lw  $t1,0($zero)     ; reg[1] <- mem[0] (= 1)        \\t1= 1 (mem[0] was 1)
+9100
+
+lw  $t2,4($zero)     ; reg[2] <- mem[4] (= A)         \\t2= A (mem[4] was a)
+9204
+
+lw  $t3,7($zero)     ; reg[3] <- mem[7] (= B)          \\t3= B (mem[7] was b)
+9307
+
+sub $t4,$t4,$t4      ; reg[4] <- 0, running total       \\t4= 4-4= 0
+1444
+
+add $t4,$t2,$t4      ; reg[4]+ = A                       \\t4= a+0 = a
+0424 
+
+slt $t5,$t2,$t3
+no opcode in my isa, wont generate any result
+ 
+beq $t5,$zero,2      ; if reg[5] == $zero its true, then go forward 4 instructions  
+e502
+
+
+
+add $t2,$t1,$t2      ; A++                                \\t2= 1+a= 11 (b)
+0212 
+//beq $t0,$t0,-5       ; go back 5 instructions
+e00b
+add $t2,$t1,$t2      ; A++                                \\t2= 1+a= 11 (b)
+0212 
+//beq $t0,$t0,-5       ; go back 5 instructions
+e00b
+
+
+
+sw  $t4,0($zero)     ; mem[0] <- reg[4]           \\store "a" into ram location 0
+a400
+
+//beq $t0,$t0, -1     ; go back 1 instructions 
+e00f
